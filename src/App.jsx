@@ -22,7 +22,7 @@ import ContactPage from './pages/ContactPage';
 function App() {
   return (
     // Router envuelve toda la aplicación para habilitar el enrutamiento
-    <Router>
+    <Router basename="/velvet_beauty_salon" >
       {/* El Header se muestra en todas las páginas */}
       <Header />
 
