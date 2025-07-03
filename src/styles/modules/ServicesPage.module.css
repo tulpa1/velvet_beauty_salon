@@ -1,0 +1,70 @@
+/* src/styles/modules/ServicesPage.module.css */
+
+/* Estilos para la sección principal de la página de servicios */
+.servicesPage {
+  padding: var(--spacing-large) var(--spacing-medium); /* Relleno */
+  text-align: center; /* Centrar contenido */
+  max-width: 1200px; /* Ancho máximo */
+  margin: 0 auto; /* Centrar la sección */
+}
+
+/* Estilos para el título de la página de servicios */
+.servicesPage h2 {
+  font-size: 2.8em;
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-large);
+  position: relative;
+  display: inline-block;
+}
+
+.servicesPage h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary-color);
+  margin: var(--spacing-small) auto 0;
+  border-radius: 2px;
+}
+
+/* Estilos para la cuadrícula de tarjetas de servicio */
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
+  gap: 30px; /* Espacio entre las tarjetas */
+  justify-items: center; /* Centra las tarjetas en la cuadrícula */
+  margin-top: var(--spacing-large); /* Espacio superior para separar del título */
+}
+
+/* Media Queries para Responsividad específica de ServicesPage */
+@media (max-width: 1024px) {
+  .servicesPage h2 {
+    font-size: 2.3em;
+  }
+  .servicesGrid {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .servicesPage h2 {
+    font-size: 2em;
+  }
+  .servicesGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .servicesPage {
+    padding: var(--spacing-medium) var(--spacing-small);
+  }
+  .servicesPage h2 {
+    font-size: 1.8em;
+  }
+  .servicesGrid {
+    grid-template-columns: 1fr; /* Una sola columna en móviles */
+    gap: 15px;
+  }
+}

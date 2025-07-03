@@ -1,0 +1,228 @@
+/*
+  src/styles/global.css
+
+  Este archivo contiene estilos globales que afectan a toda la aplicación.
+  Incluye reseteos, variables CSS, tipografía base y estilos de maquetación general.
+*/
+
+/* --- 1. Reseteo y Normalización Básico --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Asegura que padding y border no aumenten el tamaño final del elemento */
+}
+
+html {
+  scroll-behavior: smooth; /* Desplazamiento suave para anclas internas */
+}
+
+body {
+  font-family: 'Arial', sans-serif; /* Fuente por defecto para todo el texto */
+  line-height: 1.6; /* Espaciado entre líneas para mejor legibilidad */
+  color: #333; /* Color de texto principal */
+  background-color: #f8f8f8; /* Fondo suave para toda la página */
+  -webkit-font-smoothing: antialiased; /* Suavizado de fuentes para navegadores basados en WebKit */
+  -moz-osx-font-smoothing: grayscale; /* Suavizado de fuentes para Firefox en macOS */
+}
+
+/* Estilos para enlaces */
+a {
+  color: #ff69b4; /* Rosa vibrante para los enlaces */
+  text-decoration: none; /* Quitar el subrayado por defecto */
+  transition: color 0.3s ease; /* Transición suave al pasar el mouse */
+}
+
+a:hover {
+  text-decoration: underline; /* Subrayar al pasar el mouse para indicar interactividad */
+  color: #e05c9f; /* Un tono de rosa más oscuro al pasar el mouse */
+}
+
+/* Estilos para imágenes responsivas */
+img {
+  max-width: 100%; /* Las imágenes nunca superarán el ancho de su contenedor */
+  height: auto; /* Mantener la proporción de la imagen */
+  display: block; /* Eliminar el espacio extra debajo de las imágenes */
+}
+
+/* Contenedor principal de la aplicación React */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que la aplicación ocupe al menos el 100% de la altura de la ventana */
+}
+
+/* El elemento <main> para que ocupe el espacio restante entre header y footer */
+main {
+  flex-grow: 1;
+}
+
+
+/* --- 2. Variables CSS (Propiedades Personalizadas) --- */
+:root {
+  --primary-color: #ff69b4; /* Rosa principal (Hot Pink) */
+  --secondary-color: #e05c9f; /* Rosa más oscuro para hover/acentos */
+  --text-dark: #333; /* Color de texto muy oscuro */
+  --text-medium: #666; /* Color de texto medio */
+  --text-light: #999; /* Color de texto claro */
+  --background-light: #f8f8f8; /* Fondo claro general */
+  --background-white: #ffffff; /* Fondo blanco para tarjetas/secciones */
+  --border-color: #eee; /* Color de borde suave */
+  --font-family-base: 'Arial', sans-serif; /* Fuente principal */
+  --spacing-extra-small: 5px;
+  --spacing-small: 10px;
+  --spacing-medium: 20px;
+  --spacing-large: 40px;
+  --spacing-extra-large: 60px;
+  --border-radius-base: 8px; /* Radio de borde por defecto */
+  --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  --shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra media para hover */
+}
+
+
+/* --- 3. Tipografía Global --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-base);
+  color: var(--text-dark);
+  margin-bottom: var(--spacing-medium);
+  text-align: center; /* Centra todos los títulos por defecto */
+}
+
+h1 {
+  font-size: 3em; /* Título principal de la página */
+  margin-top: var(--spacing-large);
+}
+
+h2 {
+  font-size: 2.5em; /* Títulos de sección (ej. "Nuestros Servicios") */
+  margin-top: var(--spacing-medium);
+}
+
+h3 {
+  font-size: 1.8em; /* Subtítulos */
+}
+
+p {
+  font-size: 1em;
+  line-height: 1.6;
+  color: var(--text-medium);
+  margin-bottom: var(--spacing-small);
+}
+
+
+/* --- 4. Clases de Utilidad Comunes --- */
+.container {
+  max-width: 1200px; /* Ancho máximo para el contenido principal */
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+  padding: 0 var(--spacing-medium); /* Padding a los lados */
+}
+
+.section-padding {
+  padding: var(--spacing-large) 0; /* Padding vertical para secciones */
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Botón principal */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px; /* Bordes redondeados para un estilo amigable */
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none; /* Importante si es un <a/> */
+  display: inline-block; /* Permite aplicar padding y margin como un bloque */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px); /* Pequeño efecto de levantamiento */
+}
+
+
+/* --- 5. Estilos para la Cuadrícula de Servicios (Página de Servicios) --- */
+/* Estos estilos controlan la disposición de las tarjetas de servicio */
+.services-page {
+  padding: var(--spacing-large) var(--spacing-medium); /* Relleno global de la página de servicios */
+  text-align: center; /* Centrar el contenido de la página */
+  max-width: 1200px; /* Ancho máximo para que no se extienda demasiado */
+  margin: 0 auto; /* Centrar la sección en la pantalla */
+}
+
+.services-page h2 {
+  /* Inherits from global h2, but adding specific decoration */
+  position: relative;
+  display: inline-block; /* Necesario para que el ::after se posicione correctamente */
+}
+
+.services-page h2::after {
+  content: '';
+  display: block;
+  width: 60px; /* Ancho de la línea decorativa */
+  height: 4px; /* Grosor de la línea */
+  background-color: var(--primary-color); /* Color de la línea */
+  margin: var(--spacing-small) auto 0; /* Espaciado y centrado */
+  border-radius: 2px; /* Bordes redondeados para la línea */
+}
+
+.services-grid {
+  display: grid;
+  /* Configuración responsiva de la cuadrícula:
+     - auto-fit: Ajusta el número de columnas para llenar el espacio.
+     - minmax(280px, 1fr): Cada columna tendrá un mínimo de 280px y crecerá hasta 1fr.
+  */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px; /* Espacio entre las tarjetas (filas y columnas) */
+  justify-items: center; /* Centra los ítems dentro de cada celda de la cuadrícula */
+  margin-top: var(--spacing-large); /* Espacio superior para separar del título */
+}
+
+
+/* --- 6. Media Queries para Responsividad General --- */
+/* Estos afectan a los elementos globales y de maquetación */
+
+@media (max-width: 1024px) {
+  h1 { font-size: 2.8em; }
+  h2 { font-size: 2.3em; }
+  .services-grid {
+    gap: 25px; /* Reducir un poco el espacio en pantallas medianas */
+  }
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 2.5em; }
+  h2 { font-size: 2em; }
+  h3 { font-size: 1.6em; }
+  p { font-size: 0.95em; }
+
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Min-width más pequeño */
+    gap: 20px;
+  }
+  .section-padding {
+    padding: var(--spacing-large) var(--spacing-small); /* Más padding lateral en móviles */
+  }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.8em; }
+  h3 { font-size: 1.4em; }
+
+  .services-grid {
+    grid-template-columns: 1fr; /* Una sola columna en dispositivos muy pequeños */
+    gap: 15px;
+  }
+  .services-page {
+    padding: var(--spacing-medium) var(--spacing-small);
+  }
+  .btn-primary {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+}

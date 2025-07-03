@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.jsx
+import React from 'react';
+// Importa los componentes de enrutamiento de React Router DOM
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+// Importa los componentes de diseño comunes (Header y Footer)
+import Header from './components/Header';
+import Footer from './components/Footer';
+
+// Importa los componentes de cada página
+import HomePage from './pages/HomePage';
+import ServicesPage from './pages/ServicesPage';
+import GalleryPage from './pages/GalleryPage';
+import TestimonialsPage from './pages/TestimonialsPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+
+/**
+ * Componente principal de la aplicación.
+ * Define las rutas para la navegación entre las diferentes páginas del salón de belleza.
+ */
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    // Router envuelve toda la aplicación para habilitar el enrutamiento
+    <Router>
+      {/* El Header se muestra en todas las páginas */}
+      <Header />
+
+      {/* El elemento <main> contendrá el contenido de la página actual.
+          flex-grow: 1 en global.css asegura que ocupe el espacio restante. */}
+      <main>
+        {/* Routes define las diferentes rutas de la aplicación */}
+        <Routes>
+          {/* Route para la página de inicio. path="/" significa la ruta raíz. */}
+          <Route path="/" element={<HomePage />} />
+
+          {/* Route para la página de servicios */}
+          <Route path="/servicios" element={<ServicesPage />} />
+
+          {/* Route para la galería de trabajos */}
+          <Route path="/galeria" element={<GalleryPage />} />
+
+          {/* Route para la página de testimonios */}
+          <Route path="/testimonios" element={<TestimonialsPage />} />
+
+          {/* Route para la página "Sobre Nosotros" */}
+          <Route path="/nosotros" element={<AboutPage />} />
+
+          {/* Route para la página de contacto */}
+          <Route path="/contacto" element={<ContactPage />} />
+
+          {/* Puedes añadir una ruta para un error 404 si lo deseas:
+          <Route path="*" element={<NotFoundPage />} /> */}
+        </Routes>
+      </main>
+
+      {/* El Footer se muestra en todas las páginas */}
+      <Footer />
+    </Router>
+  );
 }
 
-export default App
+export default App;

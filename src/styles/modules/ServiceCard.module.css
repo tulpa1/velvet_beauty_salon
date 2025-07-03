@@ -1,0 +1,68 @@
+/* src/styles/modules/ServiceCard.module.css */
+
+.serviceCard {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 350px;
+  width: 100%;
+}
+
+.serviceCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.serviceCardImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.serviceCardContent {
+  padding: 20px;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.serviceCardTitle { /* Usando una clase específica para el título */
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.serviceCardDescription { /* Usando una clase específica para la descripción */
+  font-size: 1em;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.serviceCardButton {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  align-self: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.serviceCardButton:hover {
+  background-color: #e05c9f;
+}
+
