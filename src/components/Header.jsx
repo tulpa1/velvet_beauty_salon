@@ -1,5 +1,5 @@
 // src/components/Header.jsx
-import React, { useState } from 'react'; // Importa useState para manejar el estado del menú
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../styles/modules/Header.module.css'; // Importa el módulo CSS para el Header
 
@@ -8,33 +8,26 @@ import styles from '../styles/modules/Header.module.css'; // Importa el módulo 
  * Contiene el logo del salón, la navegación principal y un menú de hamburguesa para móviles.
  */
 function Header() {
-  // Estado para controlar si el menú móvil está abierto o cerrado
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Función para alternar la visibilidad del menú móvil
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
-  // Función para cerrar el menú móvil cuando se hace clic en un enlace
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
-
   return (
     <header className={styles.header}>
       {/* Contenedor del Logo */}
       <div className={styles.logoContainer}>
         <Link to="/" className={styles.logoLink} onClick={closeMobileMenu}>
-          <img
-            src="https://placehold.co/50x50/ff69b4/ffffff?text=Logo" // Placeholder para el logo
+          {/*<img
+            src="https://placehold.co/55x55/ff69b4/ffffff?text=Logo" // Placeholder para el logo
             alt="Velvet Beauty Salon Logo"
             className={styles.logo}
-          />
-          <h1 className={styles.salonTitle}>Velvet Beauty Salon</h1>
+          />*/} 
         </Link>
+        <h1 className={styles.salonTitle}>Velvet Beauty Salon</h1>
       </div>
-
       {/* Botón de Hamburguesa (visible solo en móviles) */}
       <button className={styles.hamburgerButton} onClick={toggleMobileMenu} aria-label="Toggle navigation menu">
         {/* Icono de hamburguesa simple con SVG */}
@@ -55,7 +48,6 @@ function Header() {
           )}
         </svg>
       </button>
-
       {/* Navegación Principal (escritorio) y Menú Móvil (cajón) */}
       <nav className={`${styles.navMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
         <ul className={styles.navList}>
@@ -70,5 +62,4 @@ function Header() {
     </header>
   );
 }
-
 export default Header;
