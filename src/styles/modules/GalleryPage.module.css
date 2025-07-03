@@ -1,0 +1,177 @@
+/* src/styles/modules/GalleryPage.module.css */
+
+/* --- Estilos de la Sección Principal de la Galería --- */
+.galleryPage {
+  text-align: center;
+  background-color: var(--background-white); /* Fondo blanco para la sección */
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--shadow-light);
+  margin-top: var(--spacing-large);
+  margin-bottom: var(--spacing-large);
+}
+
+/* --- Título y Subtítulo de la Página --- */
+.pageTitle {
+  font-family: var(--font-family-headings);
+  font-size: 3em;
+  color: var(--primary-color); /* Negro carbón */
+  margin-bottom: var(--spacing-small);
+  position: relative;
+  display: inline-block;
+  letter-spacing: 1.5px;
+}
+
+.pageTitle::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: var(--secondary-color); /* Línea dorada */
+  margin: var(--spacing-small) auto 0;
+  border-radius: 2px;
+}
+
+.pageSubtitle {
+  font-size: 1.1em;
+  color: var(--text-medium);
+  margin-bottom: var(--spacing-extra-large); /* Más espacio antes de la cuadrícula */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Cuadrícula de la Galería --- */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columnas responsivas */
+  gap: 30px; /* Espacio entre las imágenes */
+  justify-items: center; /* Centra los ítems */
+  margin-top: var(--spacing-large);
+}
+
+/* --- Ítem Individual de la Galería (Contenedor de la Imagen) --- */
+.galleryItem {
+  position: relative;
+  overflow: hidden; /* Oculta el desbordamiento para el efecto de superposición */
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--shadow-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.galleryItem:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.galleryImage {
+  width: 100%;
+  height: 280px; /* Altura fija para las imágenes de la galería */
+  object-fit: cover; /* Asegura que la imagen cubra el área */
+  display: block; /* Elimina espacio extra */
+  transition: transform 0.4s ease; /* Transición para el zoom en hover */
+}
+
+.galleryItem:hover .galleryImage {
+  transform: scale(1.05); /* Ligeramente más grande al pasar el mouse */
+}
+
+/* --- Superposición de Texto al Pasar el Mouse --- */
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro semi-transparente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Oculto por defecto */
+  transition: opacity 0.3s ease;
+  padding: var(--spacing-medium);
+  text-align: center;
+}
+
+.galleryItem:hover .imageOverlay {
+  opacity: 1; /* Visible al pasar el mouse */
+}
+
+.imageDescription {
+  color: var(--text-light); /* Texto claro */
+  font-size: 1.1em;
+  font-family: var(--font-family-headings);
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin-bottom: var(--spacing-small);
+}
+
+/* Puedes añadir un botón dentro del overlay si lo necesitas */
+.viewDetailsButton {
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+  padding: 8px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.9em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.viewDetailsButton:hover {
+  background-color: var(--accent-color);
+}
+
+
+/* --- Media Queries para Responsividad --- */
+@media (max-width: 1024px) {
+  .pageTitle {
+    font-size: 2.5em;
+  }
+  .pageSubtitle {
+    font-size: 1em;
+  }
+  .galleryGrid {
+    gap: 25px;
+  }
+  .galleryImage {
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 2em;
+  }
+  .pageSubtitle {
+    font-size: 0.95em;
+    margin-bottom: var(--spacing-large);
+  }
+  .galleryGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .galleryImage {
+    height: 220px;
+  }
+  .imageDescription {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 1.8em;
+  }
+  .pageSubtitle {
+    font-size: 0.9em;
+  }
+  .galleryGrid {
+    grid-template-columns: 1fr; /* Una sola columna en móviles */
+    gap: 15px;
+  }
+  .galleryImage {
+    height: 200px;
+  }
+}

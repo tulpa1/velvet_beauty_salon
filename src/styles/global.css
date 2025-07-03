@@ -1,65 +1,90 @@
 /*
   src/styles/global.css
+
   Este archivo contiene estilos globales que afectan a toda la aplicación.
   Incluye reseteos, variables CSS, tipografía base y estilos de maquetación general.
 */
+
 /* Importa la fuente Playfair Display de Google Fonts para un estilo más artístico en títulos */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
 
 /* --- 1. Reseteo y Normalización Básico --- */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Asegura que padding y border no aumenten el tamaño final del elemento */
 }
+
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* Desplazamiento suave para anclas internas */
 }
+
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Arial', sans-serif; /* Fuente por defecto para el cuerpo del texto */
   line-height: 1.6;
-  color: #333;
-  background-color: #f8f8f8;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color: #333; /* Color de texto principal */
+  /* background-color: #f8f8f8; Eliminado para permitir que la imagen de fondo se vea */
+  -webkit-font-smoothing: antialiased; /* Suavizado de fuentes para navegadores basados en WebKit */
+  -moz-osx-font-smoothing: grayscale; /* Suavizado de fuentes para Firefox en macOS */
+
+  /* --- Estilos para la Imagen de Fondo --- */
+  background-image: url('../assets/images/fondo.jpg'); /* Imagen de fondo elegante */
+  background-size: cover; /* Cubre toda el área del body */
+  background-position: center center; /* Centra la imagen */
+  background-repeat: no-repeat; /* No repite la imagen */
+  background-attachment: fixed; /* La imagen se fija al viewport, no se desplaza con el contenido */
+  background-color: #1a1a1a; /* Color de fondo de respaldo si la imagen no carga */
 }
+
+/* Estilos para enlaces */
 a {
-  color: #b8860b;
-  text-decoration: none;
-  transition: color 0.3s ease;
+  color: #b8860b; /* Dorado para enlaces */
+  text-decoration: none; /* Quitar el subrayado por defecto */
+  transition: color 0.3s ease; /* Transición suave al pasar el mouse */
 }
+
 a:hover {
-  text-decoration: underline;
-  color: #daa520;
+  text-decoration: underline; /* Subrayar al pasar el mouse para indicar interactividad */
+  color: #daa520; /* Un tono de dorado más claro al pasar el mouse */
 }
+
+/* Estilos para imágenes responsivas */
 img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+  max-width: 100%; /* Las imágenes nunca superarán el ancho de su contenedor */
+  height: auto; /* Mantener la proporción de la imagen */
+  display: block; /* Eliminar el espacio extra debajo de las imágenes */
 }
+
+/* Contenedor principal de la aplicación React */
 #root {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh; /* Asegura que la aplicación ocupe al menos el 100% de la altura de la ventana */
 }
+
+/* El elemento <main> para que ocupe el espacio restante entre header y footer */
 main {
   flex-grow: 1;
+  /* El contenido principal de las páginas necesitará su propio fondo
+     para que el texto sea legible sobre la imagen de fondo.
+     Por ejemplo, las secciones con .section-padding tendrán un fondo blanco o claro. */
 }
+
 
 /* --- 2. Variables CSS (Propiedades Personalizadas) --- */
 :root {
-  --primary-color: #000000;
-  --secondary-color: #1a1a1a;
-  --accent-color: #333333;
-  --text-dark: #333;
-  --text-light: #f0f0f0;
-  --text-medium: #999;
-  --background-light: #f8f8f8;
-  --background-white: #ffffff;
-  --border-color: #555;
-  --gold-color: #d4af37; /* Color dorado */
+  --primary-color: #2c2c2c; /* Negro carbón para fondo principal */
+  --secondary-color: #b8860b; /* Dorado oscuro para acentos */
+  --accent-color: #d4af37; /* Dorado más claro */
+  --text-dark: #333; /* Color de texto muy oscuro (para contenido general) */
+  --text-light: #f0f0f0; /* Color de texto claro (para fondos oscuros) */
+  --text-medium: #999; /* Color de texto medio */
+  --background-light: #f8f8f8; /* Fondo claro general */
+  --background-white: #ffffff; /* Fondo blanco para tarjetas/secciones */
+  --border-color: #555; /* Color de borde para elementos oscuros */
   --font-family-base: 'Arial', sans-serif;
-  --font-family-headings: 'Playfair Display', serif;
+  --font-family-headings: 'Playfair Display', serif; /* Nueva variable para fuentes de títulos */
   --spacing-extra-small: 5px;
   --spacing-small: 10px;
   --spacing-medium: 20px;
@@ -67,27 +92,32 @@ main {
   --spacing-extra-large: 60px;
   --border-radius-base: 8px;
   --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1);
-  --shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.2);
+  --shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
 }
+
 
 /* --- 3. Tipografía Global --- */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-headings);
+  font-family: var(--font-family-headings); /* Usando la nueva fuente para títulos */
   color: var(--text-dark);
   margin-bottom: var(--spacing-medium);
   text-align: center;
 }
+
 h1 {
   font-size: 3em;
   margin-top: var(--spacing-large);
 }
+
 h2 {
   font-size: 2.5em;
   margin-top: var(--spacing-medium);
 }
+
 h3 {
   font-size: 1.8em;
 }
+
 p {
   font-size: 1em;
   line-height: 1.6;
@@ -95,21 +125,30 @@ p {
   margin-bottom: var(--spacing-small);
 }
 
+
 /* --- 4. Clases de Utilidad Comunes --- */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-medium);
 }
+
 .section-padding {
   padding: var(--spacing-large) 0;
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente para la legibilidad del contenido */
+  margin-bottom: var(--spacing-large); /* Espacio entre secciones */
+  border-radius: var(--border-radius-base); /* Bordes redondeados para las secciones */
+  box-shadow: var(--shadow-light); /* Sombra para las secciones */
 }
+
 .text-center {
   text-align: center;
 }
+
+/* Botón principal */
 .btn-primary {
-  background-color: var(--gold-color);
-  color: var(--text-light);
+  background-color: var(--secondary-color); /* Botón con color dorado */
+  color: var(--text-light); /* Texto claro para contraste */
   padding: 12px 25px;
   border: none;
   border-radius: 25px;
@@ -120,10 +159,12 @@ p {
   display: inline-block;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
 .btn-primary:hover {
-  background-color: #b8860b;
+  background-color: var(--accent-color); /* Dorado más claro al pasar el mouse */
   transform: translateY(-2px);
 }
+
 
 /* --- 5. Estilos para la Cuadrícula de Servicios (Página de Servicios) --- */
 .services-page {
@@ -132,19 +173,22 @@ p {
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .services-page h2 {
   position: relative;
   display: inline-block;
 }
+
 .services-page h2::after {
   content: '';
   display: block;
   width: 60px;
   height: 4px;
-  background-color: var(--gold-color);
+  background-color: var(--secondary-color); /* Línea dorada */
   margin: var(--spacing-small) auto 0;
   border-radius: 2px;
 }
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -152,6 +196,7 @@ p {
   justify-items: center;
   margin-top: var(--spacing-large);
 }
+
 
 /* --- 6. Media Queries para Responsividad General --- */
 @media (max-width: 1024px) {
@@ -161,11 +206,13 @@ p {
     gap: 25px;
   }
 }
+
 @media (max-width: 768px) {
   h1 { font-size: 2.5em; }
   h2 { font-size: 2em; }
   h3 { font-size: 1.6em; }
   p { font-size: 0.95em; }
+
   .services-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
@@ -174,10 +221,12 @@ p {
     padding: var(--spacing-large) var(--spacing-small);
   }
 }
+
 @media (max-width: 480px) {
   h1 { font-size: 2em; }
   h2 { font-size: 1.8em; }
   h3 { font-size: 1.4em; }
+
   .services-grid {
     grid-template-columns: 1fr;
     gap: 15px;

@@ -1,0 +1,193 @@
+/* src/styles/modules/HomePage.module.css */
+
+/* --- Sección Hero --- */
+.heroSection {
+  position: relative;
+  height: 600px; /* Altura fija para la sección hero */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-light); /* Texto claro para contraste */
+  background-image: url('https://source.unsplash.com/random/1920x800/?luxury,salon,interior,black,silver,gold'); /* Imagen de fondo para el hero */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Superposición oscura para mejorar la legibilidad del texto */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Capa oscura semi-transparente */
+    z-index: 1;
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2; /* Asegura que el contenido esté por encima de la superposición */
+  max-width: 800px;
+  padding: var(--spacing-medium);
+  background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente para el texto del hero */
+  border-radius: var(--border-radius-base);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.heroTitle {
+  font-family: var(--font-family-headings);
+  font-size: 4em; /* Título grande y elegante */
+  color: var(--accent-color); /* Dorado para el título principal */
+  margin-bottom: var(--spacing-small);
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.heroSubtitle {
+  font-family: var(--font-family-headings);
+  font-size: 1.8em;
+  color: var(--text-light);
+  margin-bottom: var(--spacing-medium);
+  font-style: italic;
+}
+
+.heroDescription {
+  font-size: 1.1em;
+  color: #e0e0e0; /* Plateado claro para la descripción */
+  margin-bottom: var(--spacing-large);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Sección de Introducción --- */
+.introSection {
+  background-color: var(--background-white); /* Fondo blanco para esta sección */
+  color: var(--text-dark);
+  padding: var(--spacing-large) var(--spacing-medium);
+  margin-top: var(--spacing-large); /* Espacio superior */
+  margin-bottom: var(--spacing-large); /* Espacio inferior */
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--shadow-light);
+}
+
+.introSection h2 {
+  color: var(--primary-color); /* Título en negro carbón */
+  margin-bottom: var(--spacing-medium);
+}
+
+.introSection p {
+  color: var(--text-medium);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Sección Destacados --- */
+.highlightsSection {
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+  padding: var(--spacing-large) var(--spacing-medium);
+  margin-bottom: var(--spacing-large);
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--shadow-light);
+}
+
+.highlightsSection h2 {
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-large);
+}
+
+.highlightCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.highlightCard {
+  background-color: var(--background-white);
+  padding: 25px;
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--shadow-light);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlightCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.highlightCard h3 {
+  font-family: var(--font-family-headings);
+  color: var(--secondary-color); /* Dorado para los títulos de las tarjetas */
+  font-size: 1.5em;
+  margin-bottom: var(--spacing-small);
+}
+
+.highlightCard p {
+  color: var(--text-medium);
+  font-size: 0.95em;
+  margin-bottom: var(--spacing-medium);
+}
+
+.smallLink {
+  color: var(--secondary-color); /* Dorado para los enlaces pequeños */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.smallLink:hover {
+  color: var(--accent-color); /* Dorado más claro al pasar el mouse */
+  text-decoration: underline;
+}
+
+
+/* --- Media Queries para Responsividad --- */
+@media (max-width: 1024px) {
+  .heroTitle {
+    font-size: 3.5em;
+  }
+  .heroSubtitle {
+    font-size: 1.6em;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    height: 500px;
+  }
+  .heroTitle {
+    font-size: 2.8em;
+  }
+  .heroSubtitle {
+    font-size: 1.4em;
+  }
+  .heroDescription {
+    font-size: 1em;
+  }
+  .highlightCards {
+    grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    height: 400px;
+  }
+  .heroTitle {
+    font-size: 2.2em;
+  }
+  .heroSubtitle {
+    font-size: 1.2em;
+  }
+  .heroDescription {
+    font-size: 0.9em;
+  }
+  .heroContent {
+    padding: var(--spacing-small);
+  }
+}

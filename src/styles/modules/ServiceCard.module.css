@@ -1,31 +1,33 @@
 /* src/styles/modules/ServiceCard.module.css */
 
 .serviceCard {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--background-white); /* Fondo blanco para las tarjetas */
+  border-radius: 12px; /* Bordes más redondeados */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 350px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Transición suave */
+  max-width: 380px; /* Ancho máximo para las tarjetas */
   width: 100%;
+  border: 1px solid transparent; /* Borde transparente por defecto */
 }
 
 .serviceCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px); /* Mayor levantamiento al pasar el mouse */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); /* Sombra más intensa */
+  border-color: var(--secondary-color); /* Borde dorado al pasar el mouse */
 }
 
 .serviceCardImage {
   width: 100%;
-  height: 200px;
+  height: 220px; /* Altura un poco mayor para las imágenes */
   object-fit: cover;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color); /* Línea sutil debajo de la imagen */
 }
 
 .serviceCardContent {
-  padding: 20px;
+  padding: 25px; /* Más espaciado interno */
   text-align: center;
   flex-grow: 1;
   display: flex;
@@ -33,36 +35,79 @@
   justify-content: space-between;
 }
 
-.serviceCardTitle { /* Usando una clase específica para el título */
-  font-size: 1.5em;
-  color: #333;
+.serviceCardTitle {
+  font-family: var(--font-family-headings); /* Fuente artística para el título */
+  font-size: 1.7em; /* Tamaño del título del servicio */
+  color: var(--primary-color); /* Color negro carbón para el título */
   margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 
-.serviceCardDescription { /* Usando una clase específica para la descripción */
-  font-size: 1em;
-  color: #666;
-  line-height: 1.5;
-  margin-bottom: 20px;
+.serviceCardDescription {
+  font-size: 0.95em; /* Tamaño de la descripción */
+  color: var(--text-medium); /* Color gris para la descripción */
+  line-height: 1.6;
+  margin-bottom: 25px; /* Más espacio antes del botón */
   flex-grow: 1;
 }
 
 .serviceCardButton {
-  background-color: #ff69b4;
-  color: white;
+  background-color: var(--secondary-color); /* Botón en dorado */
+  color: var(--text-light); /* Texto claro */
   border: none;
-  padding: 12px 25px;
-  border-radius: 25px;
+  padding: 14px 30px; /* Relleno del botón más grande */
+  border-radius: 30px; /* Bordes más redondeados para el botón */
   cursor: pointer;
-  font-size: 1em;
+  font-size: 1.05em; /* Fuente un poco más grande */
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   align-self: center;
   text-decoration: none;
   display: inline-block;
+  letter-spacing: 0.5px;
 }
 
 .serviceCardButton:hover {
-  background-color: #e05c9f;
+  background-color: var(--accent-color); /* Dorado más claro al pasar el mouse */
+  transform: translateY(-3px); /* Pequeño levantamiento */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Sombra al botón */
 }
 
+/* Media Queries para Responsividad de la tarjeta */
+@media (max-width: 768px) {
+  .serviceCardImage {
+    height: 200px;
+  }
+  .serviceCardContent {
+    padding: 20px;
+  }
+  .serviceCardTitle {
+    font-size: 1.6em;
+  }
+  .serviceCardDescription {
+    font-size: 0.9em;
+  }
+  .serviceCardButton {
+    padding: 12px 25px;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .serviceCardImage {
+    height: 180px;
+  }
+  .serviceCardContent {
+    padding: 15px;
+  }
+  .serviceCardTitle {
+    font-size: 1.4em;
+  }
+  .serviceCardDescription {
+    font-size: 0.85em;
+  }
+  .serviceCardButton {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+}

@@ -1,0 +1,301 @@
+/* src/styles/modules/AboutPage.module.css */
+
+/* --- Estilos de la Sección Principal "Sobre Nosotros" --- */
+.aboutPage {
+  text-align: center;
+  background-color: var(--background-white); /* Fondo blanco para la sección */
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--shadow-light);
+  margin-top: var(--spacing-large);
+  margin-bottom: var(--spacing-large);
+}
+
+/* --- Título y Subtítulo de la Página --- */
+.pageTitle {
+  font-family: var(--font-family-headings);
+  font-size: 3em;
+  color: var(--primary-color); /* Negro carbón */
+  margin-bottom: var(--spacing-small);
+  position: relative;
+  display: inline-block;
+  letter-spacing: 1.5px;
+}
+
+.pageTitle::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: var(--secondary-color); /* Línea dorada */
+  margin: var(--spacing-small) auto 0;
+  border-radius: 2px;
+}
+
+.pageSubtitle {
+  font-size: 1.1em;
+  color: var(--text-medium);
+  margin-bottom: var(--spacing-extra-large);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Secciones Individuales (Historia, Misión/Visión, Equipo) --- */
+.aboutSection {
+  padding: var(--spacing-large);
+  margin-bottom: var(--spacing-extra-large);
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--shadow-light);
+  background-color: #2a2a2a; /* Fondo oscuro para las secciones internas */
+  color: var(--text-light); /* Texto claro */
+  text-align: left; /* Alinea el texto a la izquierda dentro de las secciones */
+}
+
+.aboutSection:last-child {
+  margin-bottom: 0; /* No hay margen inferior en la última sección */
+}
+
+.sectionTitle {
+  font-family: var(--font-family-headings);
+  font-size: 2em;
+  color: var(--secondary-color); /* Títulos de sección en dorado */
+  margin-bottom: var(--spacing-medium);
+  text-align: center; /* Centra el título de la sección */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-small); /* Espacio entre icono y texto */
+  border-bottom: 2px solid #444; /* Línea sutil debajo del título */
+  padding-bottom: var(--spacing-small);
+}
+
+.sectionIcon {
+  color: var(--accent-color); /* Color del icono */
+  flex-shrink: 0;
+}
+
+.sectionContent p {
+  font-size: 1em;
+  line-height: 1.7;
+  color: #e0e0e0; /* Plateado claro para el texto de párrafo */
+  margin-bottom: var(--spacing-medium);
+  text-align: justify; /* Justifica el texto para una lectura más formal */
+}
+
+.sectionContent p:last-child {
+  margin-bottom: 0;
+}
+
+.sectionImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--spacing-medium);
+}
+
+.sectionImage img {
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--shadow-medium);
+  width: 100%; /* Asegura que la imagen sea responsiva */
+  height: auto;
+  max-height: 350px; /* Altura máxima para las imágenes de sección */
+  object-fit: cover;
+}
+
+/* --- Diseño específico para la sección de historia (imagen a la derecha) --- */
+.historySection {
+  display: grid;
+  grid-template-columns: 1fr; /* Por defecto una columna */
+  gap: var(--spacing-large);
+}
+
+@media (min-width: 769px) {
+  .historySection {
+    grid-template-columns: 1fr 1fr; /* Dos columnas en escritorio */
+  }
+  .historySection .sectionContent {
+    order: 1; /* Contenido a la izquierda */
+  }
+  .historySection .sectionImage {
+    order: 2; /* Imagen a la derecha */
+  }
+}
+
+/* --- Diseño específico para la sección de misión y visión (imagen a la izquierda) --- */
+.missionVisionSection {
+  display: grid;
+  grid-template-columns: 1fr; /* Por defecto una columna */
+  gap: var(--spacing-large);
+}
+
+@media (min-width: 769px) {
+  .missionVisionSection {
+    grid-template-columns: 1fr 1fr; /* Dos columnas en escritorio */
+  }
+  .missionVisionSection .sectionContent {
+    order: 2; /* Contenido a la derecha */
+  }
+  .missionVisionSection .sectionImage {
+    order: 1; /* Imagen a la izquierda */
+  }
+}
+
+/* --- Sección de Equipo --- */
+.teamSection .sectionTitle {
+  margin-bottom: var(--spacing-medium);
+}
+
+.teamSubtitle {
+  font-size: 1em;
+  color: #e0e0e0;
+  margin-bottom: var(--spacing-large);
+  text-align: center;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas responsivas para miembros */
+  gap: 30px;
+  justify-items: center;
+  margin-top: var(--spacing-large);
+}
+
+.teamMemberCard {
+  background-color: #3a3a3a; /* Fondo un poco más claro para las tarjetas de miembro */
+  padding: 25px;
+  border-radius: var(--border-radius-base);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #555;
+}
+
+.teamMemberCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.memberAvatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: var(--spacing-medium);
+  border: 3px solid var(--secondary-color); /* Borde dorado para el avatar */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.memberName {
+  font-family: var(--font-family-headings);
+  font-size: 1.4em;
+  color: var(--accent-color); /* Dorado más claro para el nombre */
+  margin-bottom: var(--spacing-small);
+}
+
+.memberRole {
+  font-size: 0.95em;
+  color: #b0b0b0; /* Gris para el rol */
+  font-style: italic;
+  margin-bottom: var(--spacing-small);
+}
+
+.memberDescription {
+  font-size: 0.9em;
+  color: #cccccc; /* Plateado para la descripción */
+  line-height: 1.5;
+}
+
+
+/* --- Media Queries para Responsividad --- */
+@media (max-width: 1024px) {
+  .pageTitle {
+    font-size: 2.5em;
+  }
+  .pageSubtitle {
+    font-size: 1em;
+  }
+  .aboutSection {
+    padding: var(--spacing-large);
+  }
+  .sectionTitle {
+    font-size: 1.6em;
+  }
+  .sectionContent p {
+    font-size: 0.95em;
+  }
+  .teamMemberCard {
+    padding: 20px;
+  }
+  .memberAvatar {
+    width: 100px;
+    height: 100px;
+  }
+  .memberName {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 2em;
+  }
+  .pageSubtitle {
+    font-size: 0.95em;
+    margin-bottom: var(--spacing-large);
+  }
+  .aboutSection {
+    padding: var(--spacing-medium);
+    margin-bottom: var(--spacing-large);
+  }
+  .sectionTitle {
+    font-size: 1.4em;
+    flex-direction: column; /* Apila icono y texto en móvil */
+    gap: 5px;
+  }
+  .sectionContent p {
+    font-size: 0.9em;
+    text-align: left; /* Alinea a la izquierda si justify no se ve bien en móvil */
+  }
+  .teamGrid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  .teamMemberCard {
+    padding: 15px;
+  }
+  .memberAvatar {
+    width: 80px;
+    height: 80px;
+  }
+  .memberName {
+    font-size: 1.1em;
+  }
+  .memberRole {
+    font-size: 0.85em;
+  }
+  .memberDescription {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 1.8em;
+  }
+  .pageSubtitle {
+    font-size: 0.9em;
+  }
+  .aboutSection {
+    padding: var(--spacing-small);
+  }
+  .sectionTitle {
+    font-size: 1.2em;
+  }
+  .sectionImage img {
+    max-height: 250px;
+  }
+  .teamGrid {
+    grid-template-columns: 1fr; /* Una sola columna en móviles muy pequeños */
+    gap: 15px;
+  }
+}

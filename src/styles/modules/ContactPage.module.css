@@ -1,0 +1,245 @@
+/* src/styles/modules/ContactPage.module.css */
+
+/* --- Estilos de la Sección Principal de Contacto --- */
+.contactPage {
+  text-align: center;
+  background-color: var(--background-white); /* Fondo blanco para la sección */
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--shadow-light);
+  margin-top: var(--spacing-large);
+  margin-bottom: var(--spacing-large);
+}
+
+/* --- Título y Subtítulo de la Página --- */
+.pageTitle {
+  font-family: var(--font-family-headings);
+  font-size: 3em;
+  color: var(--primary-color); /* Negro carbón */
+  margin-bottom: var(--spacing-small);
+  position: relative;
+  display: inline-block;
+  letter-spacing: 1.5px;
+}
+
+.pageTitle::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: var(--secondary-color); /* Línea dorada */
+  margin: var(--spacing-small) auto 0;
+  border-radius: 2px;
+}
+
+.pageSubtitle {
+  font-size: 1.1em;
+  color: var(--text-medium);
+  margin-bottom: var(--spacing-extra-large); /* Más espacio antes de la cuadrícula */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Contenedor Principal de Contenido (Info y Formulario) --- */
+.contactContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Dos columnas responsivas */
+  gap: var(--spacing-extra-large); /* Espacio generoso entre columnas */
+  padding: var(--spacing-large);
+  background-color: #2a2a2a; /* Fondo oscuro para el contenido principal */
+  border-radius: var(--border-radius-base);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Sombra más fuerte */
+  color: var(--text-light); /* Texto claro por defecto en esta sección */
+  text-align: left; /* Alinea el texto a la izquierda dentro de las columnas */
+}
+
+/* --- Sección de Información de Contacto --- */
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium); /* Espacio entre ítems de información */
+}
+
+.infoTitle {
+  font-family: var(--font-family-headings);
+  font-size: 1.8em;
+  color: var(--secondary-color); /* Títulos de información en dorado */
+  margin-bottom: var(--spacing-medium);
+  text-align: left;
+  border-bottom: 2px solid #444; /* Línea sutil debajo del título */
+  padding-bottom: var(--spacing-small);
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start; /* Alinea el icono con el inicio del texto */
+  gap: var(--spacing-small);
+  font-size: 1em;
+  color: #e0e0e0; /* Plateado claro para el texto de info */
+  line-height: 1.6;
+}
+
+.infoItem p {
+  margin: 0; /* Elimina márgenes de párrafo por defecto */
+  color: inherit; /* Hereda el color del padre */
+}
+
+.infoIcon {
+  color: var(--accent-color); /* Iconos en dorado más claro */
+  flex-shrink: 0; /* Evita que el icono se encoja */
+  margin-top: 2px; /* Pequeño ajuste vertical para alinear con el texto */
+}
+
+.socialIcons {
+  display: flex;
+  gap: var(--spacing-medium);
+  margin-top: var(--spacing-small);
+  justify-content: flex-start; /* Alinea los iconos a la izquierda */
+}
+
+.socialIcon {
+  color: var(--text-light); /* Iconos sociales en plateado */
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.socialIcon:hover {
+  color: var(--secondary-color); /* Dorado al pasar el mouse */
+  transform: translateY(-3px);
+}
+
+.mapPlaceholder {
+  width: 100%;
+  height: 250px;
+  background-color: #444; /* Fondo oscuro para el placeholder del mapa */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-base);
+  color: #aaa; /* Texto gris para el placeholder */
+  font-size: 1.1em;
+  border: 1px solid #555;
+}
+
+/* --- Sección del Formulario de Contacto --- */
+.contactFormContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium); /* Espacio entre campos del formulario */
+  margin-top: var(--spacing-medium);
+}
+
+.formInput,
+.formTextarea {
+  padding: 15px;
+  border-radius: var(--border-radius-base);
+  border: 1px solid #555; /* Borde oscuro */
+  background-color: #3a3a3a; /* Fondo más claro que el contenedor para el input */
+  color: var(--text-light);
+  font-size: 1em;
+  outline: none; /* Quita el contorno al enfocar */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  border-color: var(--secondary-color); /* Borde dorado al enfocar */
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.3); /* Sombra de enfoque dorada */
+}
+
+.formInput::placeholder,
+.formTextarea::placeholder {
+  color: #888; /* Color de placeholder */
+}
+
+.formTextarea {
+  resize: vertical; /* Permite redimensionar verticalmente */
+  min-height: 120px;
+}
+
+.successMessage {
+  color: #4CAF50; /* Verde para éxito */
+  margin-top: var(--spacing-medium);
+  font-weight: bold;
+}
+
+.errorMessage {
+  color: #F44336; /* Rojo para error */
+  margin-top: var(--spacing-medium);
+  font-weight: bold;
+}
+
+
+/* --- Media Queries para Responsividad --- */
+@media (max-width: 1024px) {
+  .pageTitle {
+    font-size: 2.5em;
+  }
+  .pageSubtitle {
+    font-size: 1em;
+  }
+  .contactContent {
+    gap: var(--spacing-large);
+    padding: var(--spacing-large);
+  }
+  .infoTitle {
+    font-size: 1.6em;
+  }
+}
+
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 2em;
+  }
+  .pageSubtitle {
+    font-size: 0.95em;
+    margin-bottom: var(--spacing-large);
+  }
+  .contactContent {
+    grid-template-columns: 1fr; /* Una sola columna en móviles */
+    gap: var(--spacing-medium);
+    padding: var(--spacing-medium);
+  }
+  .contactInfo, .contactFormContainer {
+    align-items: center; /* Centra el contenido en móvil */
+    text-align: center;
+  }
+  .infoTitle {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .infoItem {
+    justify-content: center; /* Centra los ítems de info */
+  }
+  .socialIcons {
+    justify-content: center; /* Centra los iconos sociales */
+  }
+  .mapPlaceholder {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 1.8em;
+  }
+  .pageSubtitle {
+    font-size: 0.9em;
+  }
+  .contactContent {
+    padding: var(--spacing-small);
+  }
+  .formInput, .formTextarea {
+    padding: 12px;
+    font-size: 0.9em;
+  }
+  .mapPlaceholder {
+    height: 180px;
+    font-size: 1em;
+  }
+}

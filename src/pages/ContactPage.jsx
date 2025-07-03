@@ -1,10 +1,12 @@
 // src/pages/ContactPage.jsx
 import React, { useState } from 'react';
-// import styles from '../styles/modules/ContactPage.module.css'; // Si decides modularizar
+import styles from '../styles/modules/ContactPage.module.css'; // Importa el módulo CSS para esta página
+// Importa iconos de Lucide React para un toque profesional
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram } from 'lucide-react';
 
 /**
  * Componente de la página de contacto.
- * Incluye un formulario de contacto, información de ubicación y horarios.
+ * Incluye un formulario de contacto, información de ubicación y horarios con un diseño mejorado.
  */
 function ContactPage() {
   const [formData, setFormData] = useState({
@@ -40,62 +42,53 @@ function ContactPage() {
   };
 
   return (
-    <section className="section-padding">
+    <section className={`${styles.contactPage} section-padding`}>
       <div className="container">
-        <h2 className="text-center">Contáctanos</h2>
-        <p className="text-center" style={{ marginBottom: 'var(--spacing-large)' }}>
+        <h2 className={styles.pageTitle}>Contáctanos</h2>
+        <p className={styles.pageSubtitle}>
           ¿Tienes alguna pregunta o te gustaría agendar una cita? ¡Estamos aquí para ayudarte!
         </p>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '40px',
-          backgroundColor: 'var(--background-white)',
-          borderRadius: 'var(--border-radius-base)',
-          boxShadow: 'var(--shadow-light)',
-          padding: 'var(--spacing-large)'
-        }}>
+        <div className={styles.contactContent}>
           {/* Sección de Información de Contacto */}
-          <div>
-            <h3>Información de Contacto</h3>
-            <p><strong>Dirección:</strong> [Tu Dirección Completa], [Tu Ciudad], [Tu País]</p>
-            <p><strong>Teléfono:</strong> +[Tu Número de Teléfono]</p>
-            <p><strong>Email:</strong> info@velvetbeautysalon.com</p>
-            <p><strong>Horario:</strong></p>
-            <ul>
-              <li>Lunes - Viernes: 9:00 AM - 7:00 PM</li>
-              <li>Sábados: 10:00 AM - 5:00 PM</li>
-              <li>Domingos: Cerrado</li>
-            </ul>
+          <div className={styles.contactInfo}>
+            <h3 className={styles.infoTitle}>Información de Contacto</h3>
+            <div className={styles.infoItem}>
+              <MapPin size={24} className={styles.infoIcon} />
+              <p>[Tu Dirección Completa], [Tu Ciudad], [Tu País]</p>
+            </div>
+            <div className={styles.infoItem}>
+              <Phone size={24} className={styles.infoIcon} />
+              <p>+[Tu Número de Teléfono]</p>
+            </div>
+            <div className={styles.infoItem}>
+              <Mail size={24} className={styles.infoIcon} />
+              <p>info@velvetbeautysalon.com</p>
+            </div>
+            <div className={styles.infoItem}>
+              <Clock size={24} className={styles.infoIcon} />
+              <div>
+                <p>Lunes - Viernes: 9:00 AM - 7:00 PM</p>
+                <p>Sábados: 10:00 AM - 5:00 PM</p>
+                <p>Domingos: Cerrado</p>
+              </div>
+            </div>
 
-            <h3 style={{ marginTop: 'var(--spacing-medium)' }}>Síguenos en Redes Sociales</h3>
-            <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', marginTop: '15px' }}>
-              {/* Iconos de redes sociales (puedes usar Font Awesome o SVG) */}
-              <a href="https://facebook.com/velvetbeautysalon" target="_blank" rel="noopener noreferrer" style={{ fontSize: '2em', color: 'var(--primary-color)' }}>
-                {/* Placeholder para icono de Facebook */}
-                <span role="img" aria-label="Facebook">📘</span>
+            <h3 className={styles.infoTitle} style={{ marginTop: 'var(--spacing-medium)' }}>Síguenos en Redes Sociales</h3>
+            <div className={styles.socialIcons}>
+              <a href="https://facebook.com/velvetbeautysalon" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook">
+                <Facebook size={32} />
               </a>
-              <a href="https://instagram.com/velvetbeautysalon" target="_blank" rel="noopener noreferrer" style={{ fontSize: '2em', color: 'var(--primary-color)' }}>
-                {/* Placeholder para icono de Instagram */}
-                <span role="img" aria-label="Instagram">📸</span>
+              <a href="https://instagram.com/velvetbeautysalon" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
+                <Instagram size={32} />
               </a>
             </div>
 
-            <h3 style={{ marginTop: 'var(--spacing-medium)' }}>Encuéntranos en el Mapa</h3>
+            <h3 className={styles.infoTitle} style={{ marginTop: 'var(--spacing-medium)' }}>Encuéntranos en el Mapa</h3>
             {/* Placeholder para un mapa incrustado (Google Maps, OpenStreetMap) */}
-            <div style={{
-              width: '100%',
-              height: '250px',
-              backgroundColor: 'var(--border-color)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 'var(--border-radius-base)',
-              marginTop: '15px'
-            }}>
-              <p style={{ color: 'var(--text-light)' }}>[Mapa de Ubicación Aquí]</p>
-              {/* Ejemplo de iframe de Google Maps (reemplaza con tu ubicación)
+            <div className={styles.mapPlaceholder}>
+              <p>Mapa de Ubicación Aquí</p>
+              {/* Ejemplo de iframe de Google Maps (reemplaza con tu ubicación real)
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1dYOUR_LATITUDE!2dYOUR_LONGITUDE!3dYOUR_ZOOM!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zYOUR_BUSINESS_NAME!5e0!3m2!1sen!2sus!4v1678901234567!5m2!1sen!2sus"
                 width="100%"
@@ -110,9 +103,9 @@ function ContactPage() {
           </div>
 
           {/* Sección del Formulario de Contacto */}
-          <div>
-            <h3>Envíanos un Mensaje</h3>
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          <div className={styles.contactFormContainer}>
+            <h3 className={styles.infoTitle}>Envíanos un Mensaje</h3>
+            <form onSubmit={handleSubmit} className={styles.contactForm}>
               <input
                 type="text"
                 name="name"
@@ -120,12 +113,7 @@ function ContactPage() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                style={{
-                  padding: '12px',
-                  borderRadius: 'var(--border-radius-base)',
-                  border: '1px solid var(--border-color)',
-                  fontSize: '1em'
-                }}
+                className={styles.formInput}
               />
               <input
                 type="email"
@@ -134,12 +122,7 @@ function ContactPage() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                style={{
-                  padding: '12px',
-                  borderRadius: 'var(--border-radius-base)',
-                  border: '1px solid var(--border-color)',
-                  fontSize: '1em'
-                }}
+                className={styles.formInput}
               />
               <textarea
                 name="message"
@@ -148,20 +131,14 @@ function ContactPage() {
                 onChange={handleChange}
                 required
                 rows="6"
-                style={{
-                  padding: '12px',
-                  borderRadius: 'var(--border-radius-base)',
-                  border: '1px solid var(--border-color)',
-                  fontSize: '1em',
-                  resize: 'vertical'
-                }}
+                className={styles.formTextarea}
               ></textarea>
               <button type="submit" className="btn-primary">
                 Enviar Mensaje
               </button>
             </form>
             {status && (
-              <p style={{ marginTop: '15px', textAlign: 'center', color: status.includes('éxito') ? 'green' : 'red' }}>
+              <p className={status.includes('éxito') ? styles.successMessage : styles.errorMessage}>
                 {status}
               </p>
             )}
