@@ -26,6 +26,9 @@
   align-items: center;
 }
 
+/* Nota: .logoText y su lógica (first-child, last-child) se mantienen si los usas
+   para un efecto específico en el JSX. Si solo usas .salonTitle en un <h1>,
+   puedes considerar eliminar .logoText si no se aplica. */
 .logo {
   display: flex;
   align-items: center;
@@ -64,7 +67,7 @@
   font-family: var(--font-family-headings);
   font-weight: 700;
   font-size: 2em;
-  color: var(--text-light);
+  color: var(--text-light); /* Asumo que text-light es plateado/blanco en este diseño */
   margin: 0;
   white-space: nowrap;
   letter-spacing: 2px;
@@ -79,7 +82,7 @@
   cursor: pointer;
   padding: 10px;
   display: none;
-  color: var(--text-light);
+  color: var(--text-light); /* Color del icono para este diseño */
   z-index: 1001;
   transition: transform 0.3s ease;
 }
@@ -113,7 +116,7 @@
 }
 
 .navLink {
-  color: var(--text-light);
+  color: var(--text-light); /* Color de los enlaces para este diseño */
   font-weight: bold;
   text-decoration: none;
   padding: 8px 0;
@@ -128,7 +131,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--gold-color);
+  background-color: var(--gold-color); /* Color dorado para la línea al pasar el mouse */
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.3s ease-out;
@@ -140,7 +143,7 @@
 }
 
 .navLink:hover {
-  color: var(--gold-color);
+  color: var(--gold-color); /* Color dorado al pasar el mouse */
   text-decoration: none;
 }
 
@@ -163,7 +166,7 @@
     width: 75%;
     max-width: 320px;
     height: 100vh;
-    background-color: #222;
+    background-color: #222; /* Fondo del cajón para este diseño */
     box-shadow: -4px 0 15px rgba(0, 0, 0, 0.4);
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -172,6 +175,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    pointer-events: auto; /* ¡Añadido! Permite clics en el menú */
   }
   .navMenu.mobileMenuOpen {
     transform: translateX(0);
@@ -181,29 +185,35 @@
     text-align: center;
     width: 100%;
     gap: var(--spacing-small);
+    pointer-events: auto; /* ¡Añadido! Permite clics en la lista */
   }
   .navLink {
     display: block;
     padding: 15px 20px;
     font-size: 1.1em;
     border-bottom: 1px solid #444;
-    color: var(--text-light);
+    color: var(--text-light); /* Color del texto del enlace para este diseño */
+    /* Nota: Esta regla SCSS (&::before { display: none; }) puede causar problemas si no usas SASS/SCSS.
+       Si el efecto de línea no se oculta correctamente en móvil, es por esto. */
     &::before {
       display: none;
     }
+    pointer-events: auto; /* ¡Añadido! Permite clics en cada enlace */
   }
   .navLink:last-child {
     border-bottom: none;
   }
-  .navMenu.mobileMenuOpen::before {
-    content: '';
+  /* REMOVED: .navMenu.mobileMenuOpen::before (reemplazado por .mobileBackdrop) */
+  /* Nuevo estilo para el fondo oscuro (backdrop) */
+  .mobileBackdrop {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 998;
-    pointer-events: auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo más oscuro para este diseño */
+    z-index: 998; /* Un z-index más bajo que el menú, pero por encima del contenido */
+    pointer-events: auto; /* Permite que el clic en el fondo cierre el menú */
+    transition: opacity 0.4s ease; /* Transición para la aparición/desaparición */
   }
 }
