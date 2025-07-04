@@ -4,9 +4,14 @@ import styles from '../styles/modules/ContactPage.module.css'; // Importa el mó
 // Importa iconos de Lucide React para un toque profesional
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram } from 'lucide-react';
 
+// Importa las funciones de Firestore para añadir documentos
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../firebaseConfig'; // Importa la instancia de Firestore
+
 /**
  * Componente de la página de contacto.
  * Incluye un formulario de contacto, información de ubicación y horarios con un diseño mejorado.
+ * Ahora con funcionalidad de envío de mensajes a Firebase Firestore.
  */
 function ContactPage() {
   const [formData, setFormData] = useState({
@@ -15,6 +20,7 @@ function ContactPage() {
     message: ''
   });
   const [status, setStatus] = useState(''); // Para mostrar mensajes de éxito/error
+  const [isSubmitting, setIsSubmitting] = useState(false); // Para deshabilitar el botón durante el envío
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,18 +32,28 @@ function ContactPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus('Enviando...');
-    // Aquí es donde integrarías un servicio de backend o un servicio de formularios como Formspree
-    // Por ahora, solo simular una respuesta
+    setIsSubmitting(true); // Deshabilita el botón
+    setStatus('Enviando mensaje...'); // Mensaje de carga
+
     try {
-      // Simular un envío de 2 segundos
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      console.log('Formulario enviado:', formData);
+      // Obtiene una referencia a la colección 'contactMessages'
+      const contactMessagesCollectionRef = collection(db, 'contactMessages');
+
+      // Añade un nuevo documento a la colección con los datos del formulario
+      await addDoc(contactMessagesCollectionRef, {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        timestamp: new Date() // Añade una marca de tiempo para saber cuándo se envió
+      });
+
       setStatus('¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.');
       setFormData({ name: '', email: '', message: '' }); // Limpiar formulario
     } catch (error) {
-      console.error('Error al enviar el formulario:', error);
+      console.error('Error al enviar el mensaje a Firestore:', error);
       setStatus('Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.');
+    } finally {
+      setIsSubmitting(false); // Habilita el botón de nuevo
     }
   };
 
@@ -114,6 +130,7 @@ function ContactPage() {
                 onChange={handleChange}
                 required
                 className={styles.formInput}
+                disabled={isSubmitting} // Deshabilita el input durante el envío
               />
               <input
                 type="email"
@@ -123,6 +140,7 @@ function ContactPage() {
                 onChange={handleChange}
                 required
                 className={styles.formInput}
+                disabled={isSubmitting} // Deshabilita el input durante el envío
               />
               <textarea
                 name="message"
@@ -132,9 +150,10 @@ function ContactPage() {
                 required
                 rows="6"
                 className={styles.formTextarea}
+                disabled={isSubmitting} // Deshabilita el textarea durante el envío
               ></textarea>
-              <button type="submit" className="btn-primary">
-                Enviar Mensaje
+              <button type="submit" className="btn-primary" disabled={isSubmitting}>
+                {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
               </button>
             </form>
             {status && (

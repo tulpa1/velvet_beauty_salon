@@ -161,16 +161,41 @@
   min-height: 120px;
 }
 
-.successMessage {
-  color: #4CAF50; /* Verde para éxito */
+/* --- Estilos Mejorados para Mensajes de Estado --- */
+.statusMessage {
+  padding: 15px 20px;
   margin-top: var(--spacing-medium);
+  border-radius: var(--border-radius-base);
   font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.successMessage {
+  background-color: #d4edda; /* Verde claro */
+  color: #155724; /* Verde oscuro */
+  border: 1px solid #c3e6cb;
+  /* Puedes añadir un icono con ::before si quieres */
+  /* &::before {
+    content: '✓ ';
+    font-size: 1.2em;
+    margin-right: 5px;
+  } */
 }
 
 .errorMessage {
-  color: #F44336; /* Rojo para error */
-  margin-top: var(--spacing-medium);
-  font-weight: bold;
+  background-color: #f8d7da; /* Rojo claro */
+  color: #721c24; /* Rojo oscuro */
+  border: 1px solid #f5c6cb;
+  /* Puedes añadir un icono con ::before si quieres */
+  /* &::before {
+    content: '✖ ';
+    font-size: 1.2em;
+    margin-right: 5px;
+  } */
 }
 
 
@@ -241,5 +266,9 @@
   .mapPlaceholder {
     height: 180px;
     font-size: 1em;
+  }
+  .statusMessage {
+    padding: 12px 15px;
+    font-size: 0.9em;
   }
 }
