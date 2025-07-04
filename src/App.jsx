@@ -1,5 +1,5 @@
 // src/App.jsx
-import React from 'react';
+import React, {use, useEffect} from 'react';
 // Importa los componentes de enrutamiento de React Router DOM
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -15,11 +15,24 @@ import TestimonialsPage from './pages/TestimonialsPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 
+// Import your Firebase db instance
+import { db } from './firebaseConfig';
+
 /**
  * Componente principal de la aplicación.
  * Define las rutas para la navegación entre las diferentes páginas del salón de belleza.
  */
 function App() {
+  useEffect(() => {
+      if (db) {
+      console.log('Firebase db instance is available:', db);
+      console.log('Firebase app name:', db.app.name);
+    } else {
+      console.error('Firebase db instance is NOT available!');
+    }
+  }, []);
+
+
   return (
     // Router envuelve toda la aplicación para habilitar el enrutamiento
     <Router basename="/velvet_beauty_salon" >
