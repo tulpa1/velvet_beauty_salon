@@ -17,7 +17,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import './styles/global.css'; // Global styles
 
 function App() {
-  useEffect(() => {
+  /*useEffect(() => {
     const testFirestoreConnection = async () => {
       try {
         const testCollectionRef = collection(db, 'testCollection');
@@ -31,7 +31,7 @@ function App() {
     };
 
     testFirestoreConnection();
-  }, []);
+  }, []);*/
 
   return (
     // ¡CAMBIO CLAVE AQUÍ! Elimina el prop basename

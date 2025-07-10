@@ -1,42 +1,107 @@
 // src/pages/HomePage.jsx
-import React from 'react';
-import styles from '../styles/modules/HomePage.module.css'; // Importa el módulo CSS para esta página
-import { Link } from 'react-router-dom'; // Para el botón de navegación
+import React, { useState } from 'react';
+import styles from '../styles/modules/HomePage.module.css';
+import logourl from '../assets/images/iconovv.jpeg';
+import { Link } from 'react-router-dom';
 
-/**
- * Componente de la página de inicio.
- * Muestra una bienvenida elegante, un eslogan y un llamado a la acción.
- */
+// Importa las funciones de Firebase que ya usas en el Footer
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../firebaseConfig'; // Asegúrate de que esta ruta a tu configuración de Firebase sea correcta
+
 function HomePage() {
+  // Estados para manejar el formulario de suscripción, copiados del Footer
+  const [subscriptionData, setSubscriptionData] = useState({
+    phone: ''
+  });
+  const [subscriptionStatus, setSubscriptionStatus] = useState(''); // Mensaje de estado (éxito/error/cargando)
+  const [isSubscribing, setIsSubscribing] = useState(false); // Estado para el indicador de carga
+
+  // Manejador de cambio para el input del teléfono
+  const handlePhoneNumberChange = (e) => {
+    setSubscriptionData(prevState => ({
+      ...prevState,
+      phone: e.target.value // Actualiza solo el campo 'phone'
+    }));
+  };
+
+  // Manejador de envío del formulario de suscripción (con lógica Firebase)
+  const handleSubscribeSubmit = async () => {
+    setSubscriptionStatus(''); // Limpiar cualquier mensaje de estado previo
+
+    // Validación básica del número de teléfono
+    if (subscriptionData.phone.trim() === '') {
+      setSubscriptionStatus('Por favor, ingresa tu número de teléfono para suscribirte.');
+      return;
+    }
+
+    setIsSubscribing(true); // Activar el estado de carga
+    setSubscriptionStatus('Suscribiendo...'); // Mostrar mensaje de carga
+
+    try {
+      // Referencia a la colección en Firestore (debe coincidir con la del Footer)
+      const subscriptionsCollectionRef = collection(db, 'newsletterSubscriptions'); 
+      
+      await addDoc(subscriptionsCollectionRef, {
+        phone: subscriptionData.phone,
+        timestamp: new Date() // Guarda la fecha y hora de la suscripción
+      });
+
+      setSubscriptionStatus('¡Gracias por suscribirte! Te mantendremos informado.');
+      setSubscriptionData({ phone: '' }); // Limpiar el input después de la suscripción exitosa
+      console.log('Suscripción exitosa con el número:', subscriptionData.phone);
+
+    } catch (error) {
+      console.error('Error al suscribir el teléfono a Firestore:', error);
+      setSubscriptionStatus('Hubo un error al suscribirte. Por favor, inténtalo de nuevo.');
+    } finally {
+      setIsSubscribing(false); // Desactivar el estado de carga
+    }
+  };
+
   return (
     <section className={styles.homePage}>
-      {/* Sección Hero: La parte más destacada de la página de inicio */}
       <div className={styles.heroSection}>
         <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>Velvet Beauty Salon</h1>
-          <p className={styles.heroSubtitle}>Donde la elegancia se encuentra con el bienestar.</p>
-          <p className={styles.heroDescription}>
-            Descubre un oasis de belleza y relajación. Nuestros expertos están dedicados a realzar tu estilo
-            con servicios exclusivos para cabello, uñas y más.
-          </p>
-          <Link to="/servicios" className="btn-primary">
-            Explora Nuestros Servicios
-          </Link>
+          <img src={logourl} alt="Velvet Beauty Salon Logo" className={styles.logohero} />
+          
+          <div className={styles.heroTextContainer}>
+            {/* Título principal del Hero con el nuevo texto */}
+            <h1 className={styles.textowelcome}>No te pierdas nuestras promociones</h1>
+            
+            {/* Formulario de suscripción */}
+            {!subscriptionStatus.includes('¡Gracias') ? ( // Muestra el formulario si no hay mensaje de éxito
+              <div className={styles.subscribeForm}>
+                <input
+                  type="tel"
+                  placeholder="Ingresa tu número de teléfono"
+                  className={styles.phoneNumberInput}
+                  value={subscriptionData.phone}
+                  onChange={handlePhoneNumberChange}
+                  disabled={isSubscribing} // Deshabilitar input mientras se suscribe
+                  required // Hace que el campo sea obligatorio
+                />
+                <button 
+                  onClick={handleSubscribeSubmit} // Llama a la función de envío de Firebase
+                  className="btn-primary"
+                  disabled={isSubscribing} // Deshabilitar botón mientras se suscribe
+                >
+                  {isSubscribing ? 'Suscribiendo...' : 'Suscribirse'}
+                </button>
+                {/* Muestra mensajes de error si los hay */}
+                {subscriptionStatus && !subscriptionStatus.includes('¡Gracias') && (
+                  <p className={styles.errorMessage}>{subscriptionStatus}</p>
+                )}
+              </div>
+            ) : (
+              // Mensaje de éxito después de la suscripción
+              <p className={styles.subscriptionSuccessMessage}>
+                {subscriptionStatus}
+              </p>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Sección de Introducción/Filosofía */}
-      {/*<div className={`${styles.introSection} section-padding text-center`}>
-        <div className="container">
-          <h2>Tu Destino para la Belleza y el Cuidado Personal</h2>
-          <p>
-            En Velvet Beauty Salon, cada visita es una experiencia única. Nos enorgullece ofrecer un ambiente
-            sofisticado y servicios personalizados que superan tus expectativas. Ven y déjate consentir.
-          </p>
-        </div>
-      </div>*/}
-
-      {/* Sección Destacados (opcional, puedes añadir más contenido aquí) */}
       <div className={`${styles.highlightsSection} section-padding text-center`}>
         <div className="container">
           <h2>Servicios Destacados</h2>

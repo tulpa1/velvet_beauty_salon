@@ -7,7 +7,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   color: var(--text-light); /* Texto claro para contraste */
   background-image: url('https://source.unsplash.com/random/1920x800/?luxury,salon,interior,black,silver,gold'); /* Imagen de fondo para el hero */
   background-size: cover;
@@ -29,11 +28,41 @@
 .heroContent {
   position: relative;
   z-index: 2; /* Asegura que el contenido esté por encima de la superposición */
-  max-width: 800px;
+  max-width: 1000px; /* Aumentado el ancho máximo para el contenido del hero */
+  width: 90%; /* Ancho fluido para responsividad */
   padding: var(--spacing-medium);
   background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente para el texto del hero */
   border-radius: var(--border-radius-base);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
+  /* Flexbox para alinear el logo a la izquierda y el texto a la derecha */
+  display: flex;
+  align-items: center; /* Alinea verticalmente los elementos al centro */
+  justify-content: flex-start; /* Alinea el contenido al inicio del contenedor */
+  gap: var(--spacing-large); /* Espacio entre el logo y el contenedor de texto */
+}
+
+.logohero {
+  width: 250px; /* Tamaño del logo circular */
+  height: 250px; /* Debe ser igual al ancho para un círculo perfecto */
+  border-radius: 50%; /* Hace la imagen circular */
+  object-fit: cover; /* Asegura que la imagen cubra el círculo sin distorsionarse */
+  box-shadow: var(--shadow-light);
+}
+
+/* Contenedor para el texto del hero */
+.heroTextContainer {
+  flex-grow: 1; /* Permite que este contenedor ocupe el espacio restante */
+  text-align: left; /* Alinea el texto a la izquierda dentro de su contenedor */
+}
+
+.textowelcome{
+  font-family: var(--font-family-headings);
+  font-size: 1.5em; /* Tamaño del texto de bienvenida */
+  color:white; /* Color claro para el texto de bienvenida */
+  text-align: left;;
+  margin-bottom: var(--spacing-small);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Sombra sutil para mejorar la legibilidad */
 }
 
 .heroTitle {
@@ -43,26 +72,48 @@
   margin-bottom: var(--spacing-small);
   letter-spacing: 3px;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  text-align: left; /* Alineado a la izquierda dentro del heroTextContainer */
 }
 
-.heroSubtitle {
-  font-family: var(--font-family-headings);
-  font-size: 1.8em;
-  color: var(--text-light);
-  margin-bottom: var(--spacing-medium);
-  font-style: italic;
+/* Nuevo estilo para el contenedor del formulario de suscripción */
+.subscribeForm {
+  display: flex; /* Usa flexbox para alinear el input y el botón */
+  gap: var(--spacing-small); /* Espacio entre el input y el botón */
+  margin-top: var(--spacing-medium); /* Espacio superior para el formulario */
+  align-items: center; /* Alinea verticalmente el input y el botón */
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
 }
 
-.heroDescription {
+/* Estilo para el input del número de teléfono */
+.phoneNumberInput {
+  padding: 10px 15px;
+  border: 1px solid var(--border-color); /* Borde sutil */
+  border-radius: 25px; /* Bordes redondeados como el botón */
+  font-size: 1em;
+  width: 250px; /* Ancho fijo para el input en pantallas grandes */
+  max-width: 100%; /* Asegura que no se desborde en pantallas pequeñas */
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo ligeramente transparente */
+  color: var(--text-dark); /* Color de texto oscuro para legibilidad */
+  outline: none; /* Elimina el contorno azul por defecto al enfocar */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+}
+
+.phoneNumberInput:focus {
+  border-color: var(--accent-color); /* Borde dorado al enfocar */
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3); /* Sombra suave dorada al enfocar */
+}
+
+/* Estilo para el mensaje de suscripción exitosa */
+.subscriptionSuccessMessage {
   font-size: 1.1em;
-  color: #e0e0e0; /* Plateado claro para la descripción */
-  margin-bottom: var(--spacing-large);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  color: var(--accent-color); /* Dorado para el mensaje de éxito */
+  margin-top: var(--spacing-medium);
+  text-align: left; /* Alineado a la izquierda */
+  font-weight: bold;
 }
 
-/* --- Sección de Introducción --- */
+
+/* --- Sección de Introducción (comentada en JSX, pero se mantiene el estilo si se activa) --- */
 .introSection {
   background-color: var(--background-white); /* Fondo blanco para esta sección */
   color: var(--text-dark);
@@ -151,26 +202,38 @@
   .heroTitle {
     font-size: 3.5em;
   }
-  .heroSubtitle {
-    font-size: 1.6em;
-  }
 }
 
 @media (max-width: 768px) {
   .heroSection {
     height: 500px;
   }
+  .heroContent {
+    flex-direction: column; /* Apila logo y texto verticalmente en pantallas pequeñas */
+    text-align: center; /* Centra el contenido cuando está apilado */
+    padding: var(--spacing-small); /* Ajusta el padding */
+    gap: var(--spacing-medium); /* Ajusta el espacio entre elementos apilados */
+  }
+  .logohero {
+    width: 200px; /* Logo más pequeño cuando está apilado */
+    height: 200px;
+    margin-right: 0; /* Elimina el margen derecho */
+    margin-bottom: var(--spacing-medium); /* Añade margen inferior cuando está apilado */
+  }
+  .heroTextContainer {
+    text-align: center; /* Centra el texto dentro de su contenedor cuando está apilado */
+  }
   .heroTitle {
     font-size: 2.8em;
   }
-  .heroSubtitle {
-    font-size: 1.4em;
+  /* Ajuste para el formulario de suscripción en pantallas pequeñas */
+  .subscribeForm {
+    flex-direction: column; /* Apila el input y el botón verticalmente */
+    width: 100%; /* Ocupa todo el ancho disponible */
   }
-  .heroDescription {
-    font-size: 1em;
-  }
-  .highlightCards {
-    grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+  .phoneNumberInput {
+    width: 100%; /* Input ocupa todo el ancho */
+    margin-bottom: var(--spacing-small); /* Espacio entre input y botón */
   }
 }
 
@@ -178,14 +241,12 @@
   .heroSection {
     height: 400px;
   }
+  .logohero {
+    width: 150px; /* Logo aún más pequeño para pantallas muy pequeñas */
+    height: 150px;
+  }
   .heroTitle {
     font-size: 2.2em;
-  }
-  .heroSubtitle {
-    font-size: 1.2em;
-  }
-  .heroDescription {
-    font-size: 0.9em;
   }
   .heroContent {
     padding: var(--spacing-small);

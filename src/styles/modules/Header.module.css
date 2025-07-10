@@ -39,7 +39,7 @@
   font-family: var(--font-family-headings);
   font-weight: 700;
   font-size: 1.5em;
-  color: var(--gold-color);
+  color: var(--secondary-color); /* AJUSTADO: Usando var(--secondary-color) en lugar de var(--gold-color) */
   margin: 0;
   white-space: nowrap;
   letter-spacing: 2px;
@@ -49,13 +49,13 @@
 
 .logoText:first-child {
   margin-right: 3px;
-  border-right: 2px solid var(--gold-color);
+  border-right: 2px solid var(--secondary-color); /* AJUSTADO: Usando var(--secondary-color) */
   padding-right: 3px;
 }
 
 .logoText:last-child {
   margin-left: 3px;
-  border-left: 2px solid var(--gold-color);
+  border-left: 2px solid var(--secondary-color); /* AJUSTADO: Usando var(--secondary-color) */
   padding-left: 3px;
 }
 
@@ -131,7 +131,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--gold-color); /* Color dorado para la línea al pasar el mouse */
+  background-color: var(--secondary-color); /* AJUSTADO: Usando var(--secondary-color) */
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.3s ease-out;
@@ -143,7 +143,7 @@
 }
 
 .navLink:hover {
-  color: var(--gold-color); /* Color dorado al pasar el mouse */
+  color: var(--secondary-color); /* AJUSTADO: Usando var(--secondary-color) */
   text-decoration: none;
 }
 
@@ -171,11 +171,11 @@
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 999;
-    padding-top: 80px;
+    padding-top: 40px; /* AJUSTADO: Reducido de 60px a 40px */
     display: flex;
     flex-direction: column;
     align-items: center;
-    pointer-events: auto; /* ¡Añadido! Permite clics en el menú */
+    pointer-events: auto; /* ¡CRÍTICO! Permite clics en el menú */
   }
   .navMenu.mobileMenuOpen {
     transform: translateX(0);
@@ -185,7 +185,7 @@
     text-align: center;
     width: 100%;
     gap: var(--spacing-small);
-    pointer-events: auto; /* ¡Añadido! Permite clics en la lista */
+    pointer-events: auto; /* ¡CRÍTICO! Permite clics en la lista */
   }
   .navLink {
     display: block;
@@ -193,18 +193,12 @@
     font-size: 1.1em;
     border-bottom: 1px solid #444;
     color: var(--text-light); /* Color del texto del enlace para este diseño */
-    /* Nota: Esta regla SCSS (&::before { display: none; }) puede causar problemas si no usas SASS/SCSS.
-       Si el efecto de línea no se oculta correctamente en móvil, es por esto. */
-    &::before {
-      display: none;
-    }
-    pointer-events: auto; /* ¡Añadido! Permite clics en cada enlace */
+    pointer-events: auto; /* ¡CRÍTICO! Permite clics en cada enlace */
   }
   .navLink:last-child {
     border-bottom: none;
   }
-  /* REMOVED: .navMenu.mobileMenuOpen::before (reemplazado por .mobileBackdrop) */
-  /* Nuevo estilo para el fondo oscuro (backdrop) */
+  /* Estilo para el fondo oscuro (backdrop) */
   .mobileBackdrop {
     position: fixed;
     top: 0;
